@@ -1,0 +1,44 @@
+const config = require('../infra');
+const commonHelper = require('all-in-one');
+const healtCheck = require('./health_check');
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const correlator = require('express-correlation-id');
+const routes = require('../routes');
+const mongoConnectionPooling = require('../helpers/databases/mongodb/connection');
+const mongoConfig = config.get('/mongoDbUrl');
+class AppServer {
+
+  constructor() {
+
+      this.server = express();
+      this.server.use(helmet());
+      this.server.use(correlator());
+      this.server.use(cors());
+      this.server.use(commonHelper.initLogger());
+      this.server.use(express.json());
+      this.server.use(express.urlencoded({ extended: true }));
+
+      if (config.get('/monitoring') === 1) {
+          this.server.use(prometheus.responseCounters);
+      }
+
+      this.server.get('/', (req, res, next) => {
+        res.send(200, { success: true, data: 'server init', message: 'This service is running properly', code: 200 });
+        next();
+      });
+
+    this.server.get('/service/health', (req, res, next) => {
+      healtCheck.checkServiceHealth(this.server);
+      res.send(200, { success: true, data: 'server init', message: 'This service is running health check', code: 200 });
+      next();
+    });
+
+    routes(this.server);
+
+    mongoConnectionPooling.init(mongoConfig);
+  }
+}
+
+module.exports = AppServer;

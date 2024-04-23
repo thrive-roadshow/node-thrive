@@ -1,0 +1,57 @@
+{
+  "name": "service-mytelkomsel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node index",
+    "test": "jest --verbose --coverage=true --forceExit",
+    "lint": "./node_modules/.bin/eslint ./ --fix",
+    "dev": "set NODE_ENV=staging&&nodemon index.js"
+  },
+  "author": "Farid Tri Wicaksono",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thrive-roadshow/node-mytsel.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "all-in-one": "github:thrive-roadshow/all-in-one",
+    "axios": "^1.6.8",
+    "confidence": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.19.2",
+    "express-correlation-id": "^2.0.1",
+    "helmet": "^7.1.0",
+    "joi": "^17.8.1",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "mongodb": "^5.9.2",
+    "mysql2": "^3.3.3",
+    "path": "^0.12.7",
+    "semver": "^7.6.0",
+    "util": "^0.12.4",
+    "uuid": "^9.0.0",
+    "validate.js": "^0.13.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "~2.20.2",
+    "eslint-plugin-jest": "^24.7.0",
+    "jest": "^28.1.0",
+    "jest-sonar": "^0.2.12",
+    "nock": "^13.2.4",
+    "nodemon": "^3.1.0",
+    "prettier": "^2.6.2",
+    "sinon": "^17.0.0",
+    "supertest": "^6.2.3"
+  }
+}

@@ -1,6 +1,10 @@
 # Node Service
 This project written in javascript using ExpressJS based on a clean architecture that represents DDD and CQRS patterns. 
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=thrive-roadshow_node-thrive&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=thrive-roadshow_node-thrive)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=thrive-roadshow_node-thrive&metric=coverage)](https://sonarcloud.io/summary/new_code?id=thrive-roadshow_node-thrive)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=thrive-roadshow_node-thrive&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=thrive-roadshow_node-thrive)
+
 ## Project Structure
 - [ ] `src/`
   - [ ] `app/`: server.
@@ -76,3 +80,7 @@ $ npm run lint:fix
 * [ExpressJS] The rest framework used
 * [Npm] - Dependency Management
 * [Docker] - Container Management
+
+### SonarCloud Report
+
+[Link to SonarCloud Report](<https://sonarcloud.io/summary/new_code?id=thrive-roadshow_node-thrive&branch=main>)

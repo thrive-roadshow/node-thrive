@@ -1,7 +1,8 @@
 const { MongoClient } = require('mongodb');
 const commonHelper = require('all-in-one');
+
 const wrapper = commonHelper.Wrapper;
-let connectionPool = new Map();
+const connectionPool = new Map();
 
 const init = async (config) => {
   try {

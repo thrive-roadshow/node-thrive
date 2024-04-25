@@ -1,13 +1,16 @@
 
+const commonHelper = require('all-in-one');
 const Query = require('../queries/query');
 const Command = require('./command');
 const jwt = require('../../../../auth/jwt_auth_helper');
-const commonHelper = require('all-in-one');
+
 const wrapper = commonHelper.Wrapper;
 const common = require('../../utils/common');
+
 const { NotFoundError, UnauthorizedError, ConflictError } = commonHelper.Error;
 const { v4: uuid } = require('uuid');
 const config = require('../../../../infra');
+
 const algorithm = config.get('/cipher/algorithm');
 const secretKey = config.get('/cipher/key');
 class User {

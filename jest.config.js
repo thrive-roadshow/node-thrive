@@ -8,11 +8,6 @@ module.exports = {
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
 
-  coverageReporters: ['text', 'lcov'],
-
-  collectCoverage: true,
-  testResultsProcessor: 'jest-sonar-reporter',
-
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: [
     'config.js',

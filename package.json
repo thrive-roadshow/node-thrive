@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "node index",
-    "test": "jest --coverage=true",
-    "posttest": "jest-junit",
+    "test": "jest --verbose --coverage=true --forceExit",
+    "test:coverage": "jest --coverage",
     "lint": "./node_modules/.bin/eslint ./ --fix",
     "dev": "set NODE_ENV=staging&&nodemon index.js"
   },
@@ -48,9 +48,7 @@
     "eslint-plugin-import": "~2.20.2",
     "eslint-plugin-jest": "^24.7.0",
     "jest": "^28.1.0",
-    "jest-junit": "^16.0.0",
     "jest-sonar": "^0.2.12",
-    "jest-sonar-reporter": "^2.0.0",
     "nock": "^13.2.4",
     "nodemon": "^3.1.0",
     "prettier": "^2.6.2",

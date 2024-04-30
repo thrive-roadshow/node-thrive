@@ -48,23 +48,8 @@ const registerUser = async (req, res) => {
   sendResponse(await postRequest(validatePayload));
 };
 
-const getRefreshToken = async (req, res) => {
-  const payload = req.body;
-  const validatePayload = commonHelper.isValidPayload(payload, commandModel.refreshToken);
-  const postRequest = async (result) => {
-    return result.err ? result : commandHandler.getRefreshToken(result.data);
-  };
-  const sendResponse = async (result) => {
-    (result.err)
-      ? wrapper.response(res, 'fail', result, 'Refresh token fail', httpError.CONFLICT)
-      : wrapper.response(res, 'success', result, 'Refresh token success', http.OK);
-  };
-  sendResponse(await postRequest(validatePayload));
-};
-
 module.exports = {
   loginUser,
   registerUser,
-  getUser,
-  getRefreshToken
+  getUser
 };

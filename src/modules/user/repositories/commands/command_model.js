@@ -22,10 +22,6 @@ const register = joi.object({
   referralCode: joi.string().optional().allow('')
 });
 
-const refreshToken = joi.object({
-  refreshToken: joi.string().required()
-});
-
 const verifyOtp = joi.object({
   username: [
     joi.string().email(),
@@ -38,6 +34,5 @@ module.exports = {
   login,
   logout,
   register,
-  refreshToken,
   verifyOtp,
 };

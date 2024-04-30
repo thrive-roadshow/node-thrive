@@ -26,13 +26,13 @@ class AppServer {
       }
 
       this.server.get('/', (req, res, next) => {
-        res.send(200, { success: true, data: 'server init', message: 'This service is running properly', code: 200 });
+        res.status(200).send({ success: true, data: 'server init', message: 'This service is running properly', code: 200 });
         next();
       });
 
     this.server.get('/service/health', (req, res, next) => {
       healtCheck.checkServiceHealth(this.server);
-      res.send(200, { success: true, data: 'server init', message: 'This service is running health check', code: 200 });
+      res.status(200).send({ success: true, data: 'server init', message: 'This service is running health check', code: 200 });
       next();
     });
 

@@ -16,13 +16,7 @@ const registerUser = async (payload) => {
   return postCommand(payload);
 };
 
-const getRefreshToken = async (payload) => {
-  const postCommand = async payload => user.getRefreshToken(payload);
-  return postCommand(payload);
-};
-
 module.exports = {
   loginUser,
-  registerUser,
-  getRefreshToken
+  registerUser
 };

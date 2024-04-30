@@ -81,5 +81,9 @@
     "all": true,
     "cache": true,
     "report-dir": "./coverage"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }

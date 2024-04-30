@@ -3,12 +3,12 @@ const confidence = require('confidence');
 
 const config = {
    port: process.env.PORT,
-   basicAuthApi: [
+   basicAuthApi:
       {
          username: process.env.BASIC_AUTH_USERNAME,
          password: process.env.BASIC_AUTH_PASSWORD
       }
-   ],
+   ,
    jwt: {
       publicKey: process.env.PUBLIC_KEY_PATH,
       privateKey: process.env.PRIVATE_KEY_PATH,
@@ -49,6 +49,11 @@ const config = {
       apiKey: process.env.ELASTIC_APM_API_KEY,
       serverUrl: process.env.ELASTIC_APM_SERVER_URL,
    },
+   cipher: {
+      algorithm: process.env.CIPHER_ALGORITHM,
+      ivLength: parseInt(process.env.CIPHER_IV_LENGTH) || 16,
+      key: process.env.CIPHER_KEY
+    },
 };
 
 const store = new confidence.Store(config);

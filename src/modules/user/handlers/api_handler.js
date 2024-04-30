@@ -22,7 +22,7 @@ const loginUser = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const { userId } = req;
+  const { userId } = req.userMeta;
   const getData = async () => queryHandler.getUser(userId);
   const sendResponse = async (result) => {
     (result.err)

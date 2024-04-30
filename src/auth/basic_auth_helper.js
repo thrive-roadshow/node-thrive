@@ -4,21 +4,23 @@ const wrapper = commonHelper.Wrapper;
 const { UnauthorizedError } = commonHelper.Error;
 const validate = require('validate.js');
 
-const isAuthenticated = async (req, res) => {
+const isAuthenticated = async (req, res, next) => {
   const result = { err: null, data: null };
-  if (validate.isEmpty(req?.authorization?.basic)) {
-    result.err = new UnauthorizedError();
+  const authHeader = req.headers?.authorization;
+  if (validate.isEmpty(authHeader) || !authHeader.startsWith('Basic ')) {
+    result.err = new UnauthorizedError('Token is not valid');
     return wrapper.response(res, 'fail', result, 'Token is not valid!', 401);
   }
-  const { username } = req.authorization.basic;
-  const { password } = req.authorization.basic;
+  const base64Credentials = authHeader.split(' ')[1];
+  const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+  const [username, password] = credentials.split(':');
   const userDatas = config.get('/basicAuthApi');
-  userDatas.forEach((value) => {
-    if ((value.username !== username) || (value.password !== password)) {
-      result.err = new UnauthorizedError();
-      return wrapper.response(res, 'fail', result, 'Token is not valid!', 401);
-    }
-  });
+  if ((userDatas.username !== username) || (userDatas.password !== password)) {
+    result.err = new UnauthorizedError('Token is not valid');
+    return wrapper.response(res, 'fail', result, 'Token is not valid!', 401);
+  }
+  req.isAuthenticated = true;
+  next();
 };
 
 module.exports = {

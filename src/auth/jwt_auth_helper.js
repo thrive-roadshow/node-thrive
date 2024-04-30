@@ -35,7 +35,7 @@ const getToken = (headers) => {
   return undefined;
 };
 
-const verifyToken = async (req, res) => {
+const verifyToken = async (req, res,next) => {
   const result = { err: null, data: null };
   const publicKey = decodeKey(jwtPublicKey);
   const token = getToken(req.headers);
@@ -54,7 +54,8 @@ const verifyToken = async (req, res) => {
     result.err = new ForbiddenError('Token is not valid!');
     return wrapper.response(res, 'fail', result, 'Token is not valid!', ERROR.FORBIDDEN);
   }
-  req.userMeta = decodedToken;
+  req.userMeta = decodedToken.metadata;
+  next()
 };
 
 module.exports = {

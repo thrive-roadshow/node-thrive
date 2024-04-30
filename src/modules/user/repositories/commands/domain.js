@@ -20,7 +20,6 @@ class User {
   async generateCredential(payload) {
     const ctx = 'domain-generateCredentialV2';
     const filterData = common.filterEmailOrMobileNumber(payload.username);
-
     const user = await this.query.findOneUser(filterData);
     if (user.err) {
       commonHelper.log(['ERROR'],{ctx, error:user.err, message:'user not found'});
@@ -34,11 +33,8 @@ class User {
     }
 
     const accessToken = await jwt.generateToken({sub: user.data.userId, metadata: user.data});
-    const refreshToken = await jwt.generateRefreshToken({sub: user.data.userId});
-
     return wrapper.data({
-      accessToken,
-      refreshToken
+      accessToken
     });
   }
 

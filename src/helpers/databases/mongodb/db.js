@@ -19,10 +19,10 @@ class DB {
     return connection.collection(collectionName);
   }
 
-  async findOne(parameter, projection, collectionName) {
+  async findOne(parameter, collectionName) {
     try {
       const db = await this.getDatabase(collectionName);
-      const result = await db.findOne(parameter, { projection });
+      const result = await db.findOne(parameter);
       if (!result) {
         return wrapper.error(errorEmptyMessage);
       }

@@ -22,7 +22,7 @@ const checkServiceHealth = async (server) => {
   const mongoConnection = await mongoConnectionPooling.init();
   if (!mongoConnection) {
     handleUnhealthyService(server);
-    return;
+    
   }
 };
 

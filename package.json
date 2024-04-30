@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node index",
     "test": "jest --verbose --coverage=true --forceExit",
+    "test:coverage": "jest --coverage",
     "lint": "./node_modules/.bin/eslint ./ --fix",
     "dev": "set NODE_ENV=staging&&nodemon index.js"
   },

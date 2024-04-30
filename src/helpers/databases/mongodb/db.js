@@ -1,6 +1,7 @@
 
-const mongoConnection = require('./connection');
 const commonHelper = require('all-in-one');
+const mongoConnection = require('./connection');
+
 const wrapper = commonHelper.Wrapper;
 const errorQueryMessage = 'Error querying MongoDB';
 const errorEmptyMessage = 'Data Not Found Please Try Another Input';

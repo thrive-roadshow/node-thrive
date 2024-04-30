@@ -27,5 +27,5 @@ const init = async (server) => {
 };
 
 module.exports = {
-  init: init
+  init
 };

@@ -1,12 +1,17 @@
 FROM node:20-alpine
 
+RUN addgroup -S nonroot \
+    && adduser -S nonroot -G nonroot
+
+USER nonroot
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 
 COPY . .
 
-RUN npm i --omit=dev && npm cache clean --force
+RUN npm install --ignore-scripts --omit=dev && npm cache clean --force
 
 EXPOSE 9000
 

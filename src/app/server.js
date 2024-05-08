@@ -12,11 +12,19 @@ const mongoConfig = config.get('/mongoDbUrl');
 class AppServer {
 
   constructor() {
+    this.init();
+  }
 
+  async init() {
       this.server = express();
       this.server.use(helmet());
       this.server.use(correlator());
-      this.server.use(cors());
+      this.server.use(cors({
+        preflightMaxAge: 5,
+        origins: ['*'],
+        allowHeaders: ['Authorization'],
+        exposeHeaders: ['Authorization']
+      }));
       this.server.use(commonHelper.initLogger());
       this.server.use(express.json());
       this.server.use(express.urlencoded({ extended: true }));

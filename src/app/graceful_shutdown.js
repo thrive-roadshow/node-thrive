@@ -1,4 +1,4 @@
-// const config = require('../infra/configs/global_config'); //set timeout
+
 const logger = require('all-in-one');
 
 const shutdown = async (server) => {

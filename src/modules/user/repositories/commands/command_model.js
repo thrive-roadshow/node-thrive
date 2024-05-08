@@ -18,7 +18,7 @@ const register = joi.object({
     joi.string().email(),
     joi.string().regex(/^[+]62/)
   ],
-  password: joi.string().min(8).regex(/(?=\D*\d)(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>?]{6,}$/).required(),
+  password: joi.string().min(8).regex(/(?=\D*\d)(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]{6,}$/).required(),
   referralCode: joi.string().optional().allow('')
 });
 

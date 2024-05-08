@@ -1,13 +1,14 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
 const { UnauthorizedError } = require('all-in-one').Error;
-const config = require('../../../src/infra');
 const commonHelper = require('all-in-one');
+const config = require('../../../src/infra');
+
 const wrapper = commonHelper.Wrapper;
 const { isAuthenticated } = require('../../../src/auth/basic_auth_helper');
 
 describe('Authentication Middleware', () => {
-  let req, res, next;
+  let req; let res; let next;
 
   beforeEach(() => {
     req = {

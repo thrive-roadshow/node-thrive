@@ -1,5 +1,5 @@
-const { filterEmailOrMobileNumber } = require('../../../../../src/modules/user/utils/common');
 const { expect } = require('chai');
+const { filterEmailOrMobileNumber } = require('../../../../../src/modules/user/utils/common');
 
 describe('filterEmailOrMobileNumber', () => {
   it('should return an object with email when username includes @', () => {

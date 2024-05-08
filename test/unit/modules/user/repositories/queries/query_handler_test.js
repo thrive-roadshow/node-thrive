@@ -1,7 +1,7 @@
-const queryHandler = require('../../../../../../src/modules/user/repositories/queries/query_handler');
-const User = require('../../../../../../src/modules/user/repositories/queries/domain');
 const sinon = require('sinon');
 const assert = require('assert');
+const queryHandler = require('../../../../../../src/modules/user/repositories/queries/query_handler');
+const User = require('../../../../../../src/modules/user/repositories/queries/domain');
 
 describe('User-queryHandler', () => {
 

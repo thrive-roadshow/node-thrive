@@ -21,10 +21,6 @@ class AppServer {
       this.server.use(express.json());
       this.server.use(express.urlencoded({ extended: true }));
 
-      if (config.get('/monitoring') === 1) {
-          this.server.use(prometheus.responseCounters);
-      }
-
       this.server.get('/', (req, res, next) => {
         res.status(200).send({ success: true, data: 'server init', message: 'This service is running properly', code: 200 });
         next();

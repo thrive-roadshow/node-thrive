@@ -2,12 +2,13 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const jwt = require('jsonwebtoken');
 const commonHelper = require('all-in-one');
+
 const { ForbiddenError } = commonHelper.Error;
 const wrapper = commonHelper.Wrapper;
 const { generateToken, verifyToken } = require('../../../src/auth/jwt_auth_helper');
 
 describe('Token Helper', () => {
-  let req, res, next;
+  let req; let res; let next;
 
   beforeEach(() => {
     req = {
@@ -72,7 +73,6 @@ describe('Token Helper', () => {
       const verifyStub = sinon.stub(jwt, 'verify').throws(new jwt.JsonWebTokenError());
     
       const wrapperResponseStub = sinon.stub(wrapper, 'response');
-      const next = sinon.stub();
       await verifyToken(req, res, next);
   
       expect(wrapperResponseStub.calledOnce).to.be.true;
@@ -84,7 +84,6 @@ describe('Token Helper', () => {
 
     it('should return ForbiddenError if authorization header is missing', async () => {
       const verifyStub = sinon.stub(jwt, 'verify');
-      const next = sinon.stub();
       await verifyToken(req, res, next);
 
       verifyStub.restore();

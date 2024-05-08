@@ -1,14 +1,15 @@
 
 const commonHelper = require('all-in-one');
+const { v4: uuid } = require('uuid');
 const Query = require('../queries/query');
 const Command = require('./command');
+
 const jwt = require('../../../../auth/jwt_auth_helper');
 
 const wrapper = commonHelper.Wrapper;
 const common = require('../../utils/common');
 
 const { NotFoundError, UnauthorizedError, ConflictError } = commonHelper.Error;
-const { v4: uuid } = require('uuid');
 const config = require('../../../../infra');
 
 const algorithm = config.get('/cipher/algorithm');
@@ -46,7 +47,7 @@ class User {
     const filterData = common.filterEmailOrMobileNumber(payload.username);
     const user = await this.query.findOneUser(filterData);
     if (user.data) {
-      commonHelper.log(['ERROR'],'user already exist');
+      commonHelper.log(['ERROR'],`${ctx} user already exist`);
       return wrapper.error(new ConflictError('user already exist'));
     }
     delete payload.username;

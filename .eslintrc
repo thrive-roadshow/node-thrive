@@ -7,11 +7,7 @@
     "jest/globals": true
   },
   "parserOptions": {
-    "ecmaVersion": 2018,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    },
-    "sourceType": "module"
+    "ecmaVersion": 2018
   },
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],

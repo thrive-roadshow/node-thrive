@@ -1,9 +1,9 @@
 const assert = require('assert');
 const sinon = require('sinon');
 
+const commonHelper = require('all-in-one');
 const command = require('../../../../../../src/modules/user/repositories/commands/command');
 const query = require('../../../../../../src/modules/user/repositories/queries/query');
-const commonHelper = require('all-in-one');
 const jwtAuth = require('../../../../../../src/auth/jwt_auth_helper');
 const User = require('../../../../../../src/modules/user/repositories/commands/domain');
 const common = require('../../../../../../src/modules/user/utils/common');
@@ -35,11 +35,11 @@ describe('User-domain', () => {
 
   const accessToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9';
 
-  before(() => {
+  beforeEach(() => {
     sinon.stub(commonHelper, 'log');
   });
 
-  after(() => {
+  afterEach(() => {
     commonHelper.log.restore();
   });
 
@@ -74,10 +74,7 @@ describe('User-domain', () => {
     });
 
     it('should return user invalid', async() => {
-      const payload = {
-        'username': 'email@gmail.com',
-        'password': 'assessment123'
-      };
+      
       delete queryResult.data.isConfirmed;
       sinon.stub(query.prototype, 'findOneUser').resolves(queryResult);
       sinon.stub(commonHelper, 'decryptWithIV').returns(queryResult.password);

@@ -1,21 +1,22 @@
 
-const AppServer = require('../../src/app/server');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const expect = require('chai').expect;
+const AppServer = require('../../src/app/server');
+
 chai.use(chaiHttp);
 
 describe('App', () => {
   let appServer = '';
 
-  beforeEach(function (done) {
+  beforeEach( (done) => {
     appServer = new AppServer();
     this.server = appServer.server.listen(3000, () => {
       done();
     });
   });
 
-  afterEach(function () {
+  afterEach( () => {
     this.server.close()
   });
 

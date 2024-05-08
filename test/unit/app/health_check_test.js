@@ -1,11 +1,9 @@
 // FILEPATH: /Users/faridtriwicaksono/Documents/TELKOMSEL/DEV/assesment-project/user-service/test/unit/bin/app/health_check.test.js
 
-const chai = require('chai');
 const sinon = require('sinon');
+const commonHelper = require('all-in-one');
 const mongoConnectionPooling = require('../../../src/helpers/databases/mongodb/connection');
 const healthCheck = require('../../../src/app/health_check');
-const commonHelper = require('all-in-one');
-const expect = chai.expect;
 
 describe('healthCheck', () => {
   let sandbox;
@@ -44,12 +42,17 @@ describe('healthCheck', () => {
 
   it('should handle consistently unhealthy service and shutdown', async () => {
     mongoConnectionStub.resolves(false);
+  
+    const promises = [];
 
     for (let i = 0; i < MAX_RETRIES; i++) {
-      await healthCheck.checkServiceHealth(server);
+      promises.push(healthCheck.checkServiceHealth(server));
     }
 
+    await Promise.all(promises);
+  
     sinon.assert.calledWith(logStub, 'Service is consistently unhealthy. Restarting...');
     sinon.assert.calledOnce(server.close);
   });
+  
 });

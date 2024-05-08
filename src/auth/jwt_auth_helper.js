@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
-const config = require('../infra');
 const commonHelper = require('all-in-one');
+
+const config = require('../infra');
+
 const wrapper = commonHelper.Wrapper;
 const { ERROR } = commonHelper;
 const { ForbiddenError } = commonHelper.Error;
@@ -28,7 +30,7 @@ const generateToken = async (payload) => {
 };
 
 const getToken = (headers) => {
-  if (String(headers?.authorization).startsWith('Bearer ')) {
+  if (String(headers.authorization).startsWith('Bearer ')) {
     const token = headers.authorization;
     return token.substring(7, token.length);
   }

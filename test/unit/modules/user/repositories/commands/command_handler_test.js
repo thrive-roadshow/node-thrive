@@ -1,7 +1,7 @@
-const commandHandler = require('../../../../../../src/modules/user/repositories/commands/command_handler');
-const User = require('../../../../../../src/modules/user/repositories/commands/domain');
 const sinon = require('sinon');
 const assert = require('assert');
+const commandHandler = require('../../../../../../src/modules/user/repositories/commands/command_handler');
+const User = require('../../../../../../src/modules/user/repositories/commands/domain');
 
 describe('User-commandHandler', () => {
 

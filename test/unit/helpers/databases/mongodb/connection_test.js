@@ -1,4 +1,4 @@
-const assert = require('assert');
+
 const { MongoClient } = require('mongodb');
 const sinon = require('sinon');
 

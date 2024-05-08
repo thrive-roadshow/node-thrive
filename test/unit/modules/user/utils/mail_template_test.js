@@ -1,5 +1,5 @@
-const { emailVerification, mobileNumberVerification } = require('../../../../../src/modules/user/utils/mail_template');
 const { expect } = require('chai');
+const { emailVerification, mobileNumberVerification } = require('../../../../../src/modules/user/utils/mail_template');
 
 describe('mail_template', () => {
   it('should return OTP message for email verification', () => {

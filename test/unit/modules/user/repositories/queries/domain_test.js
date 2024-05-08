@@ -1,7 +1,7 @@
-const User = require('../../../../../../src/modules/user/repositories/queries/domain');
-const query = require('../../../../../../src/modules/user/repositories/queries/query');
 const sinon = require('sinon');
 const assert = require('assert');
+const User = require('../../../../../../src/modules/user/repositories/queries/domain');
+const query = require('../../../../../../src/modules/user/repositories/queries/query');
 
 
 describe('viewUser', () => {
@@ -14,7 +14,7 @@ describe('viewUser', () => {
 
   it('should return user data without _id and password', async() => {
 
-    let queryResult = {
+    const queryResult = {
       err: null,
       data: {
         '_id': '65cb2250a10d1f8be67f5517',
@@ -57,7 +57,7 @@ describe('viewUser', () => {
 
   it('should return error', async() => {
 
-    let queryResult = {
+    const queryResult = {
       'err': true,
       'data': null
     };

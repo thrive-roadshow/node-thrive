@@ -1,23 +1,18 @@
 const sinon = require('sinon');
-
+const { expect } = require('chai');
+const httpMocks = require('node-mocks-http');
+const commonHelper = require('all-in-one');
 const userHandler = require('../../../../../src/modules/user/handlers/api_handler');
 const commandHandler = require('../../../../../src/modules/user/repositories/commands/command_handler');
 const queryHandler = require('../../../../../src/modules/user/repositories/queries/query_handler');
-const commonHelper = require('all-in-one');
 
 
 describe('User Api Handler', () => {
 
   let commandStub;
-
-  const req = {
-    body: {}
-  };
-
-  const res = {
-    send: sinon.stub()
-  };
-
+  const req = httpMocks.createRequest({});
+  const res = httpMocks.createResponse({});
+  
   const resultSuccess = {
     err: null,
     message: 'success',
@@ -73,6 +68,9 @@ describe('User Api Handler', () => {
     });
   
     it('should return error response', async () => {
+      req.userMeta = {
+        userId: 1
+      };
       sinon.stub(queryHandler, 'getUser').returns(resultError);
   
       await userHandler.getUser(req, res);
@@ -87,7 +85,7 @@ describe('User Api Handler', () => {
       sinon.stub(queryHandler, 'getUser').returns(resultSuccess);
   
       await userHandler.getUser(req, res);
-  
+      
       expect(res.statusCode).to.equal(200);
     });
   });

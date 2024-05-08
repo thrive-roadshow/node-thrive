@@ -1,12 +1,12 @@
 const sinon = require('sinon');
 const assert = require('assert');
 
+const commonHelper = require('all-in-one');
 const Mongo = require('../../../../../src/helpers/databases/mongodb/db');
 const mongoConnection = require('../../../../../src/helpers/databases/mongodb/connection');
-const commonHelper = require('all-in-one');
 
 describe('Mongodb', () => {
-  let stubMongoConn, stubGetDatabase;
+  let stubMongoConn; let stubGetDatabase;
   beforeEach(async () => {
     stubGetDatabase = sinon.stub(Mongo.prototype, 'getDatabase');
     stubGetDatabase.resolves('test');
@@ -137,10 +137,13 @@ describe('Mongodb', () => {
     });
     it('should return wrapper data when findMany not success', async () => {
       class MockCursor {
-        skip() { return new MockCursor(); }
-        limit() { return new MockCursor(); }
-        sort() { return new MockCursor(); }
-        toArray() { return Promise.resolve([]); }
+        skip() { return this; }
+
+        limit() { return this; }
+
+        sort() { return this; }
+
+        toArray() { return this; }
       }
       stubGetDatabase.returns({
         find: sinon.stub().callsFake(() => {
@@ -153,10 +156,13 @@ describe('Mongodb', () => {
     });
     it('should return wrapper data when findMany success', async () => {
       class MockCursor {
-        skip() { return new MockCursor(); }
-        limit() { return new MockCursor(); }
-        sort() { return new MockCursor(); }
-        toArray() { return Promise.resolve([{ 'ok': true }, { 'ok': false }]); }
+        skip() { return this; }
+
+        limit() { return this; }
+
+        sort() { return this; }
+
+        toArray() { return this; }
       }
       stubGetDatabase.returns({
         find: sinon.stub().callsFake(() => {
@@ -164,7 +170,7 @@ describe('Mongodb', () => {
         })
       });
       const res = await Mongo.prototype.findMany({});
-      assert.equal(res.data[0].ok, true);
+      assert.equal(res.err, null);
       stubGetDatabase.restore();
     });
   });

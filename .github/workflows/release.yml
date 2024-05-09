@@ -2,7 +2,8 @@ name: Application Kubernetes Release
 
 on:
   push:
-    tags: [*.*.*]
+    tags:
+      - '*'
 
 env:
   USERNAME: ${{ github.actor }}

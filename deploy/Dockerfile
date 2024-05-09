@@ -1,7 +1,10 @@
-FROM node:20.13.0-alpine
+FROM node:20-alpine
 
 RUN addgroup -S nonroot \
     && adduser -S nonroot -G nonroot
+
+# Install git
+RUN apk add --no-cache git
 
 USER nonroot
 

@@ -6,7 +6,4 @@ module.exports = (server) => {
   server.post('/users/v1/login', basicAuth.isAuthenticated, userHandler.loginUser);
   server.get('/users/v1/profile', jwtAuth.verifyToken, userHandler.getUser);
   server.post('/users/v1/register', basicAuth.isAuthenticated, userHandler.registerUser);
-  server.get('health', (req, res) => {
-    res.send(200, { status: 'ok' });
-  }
 };

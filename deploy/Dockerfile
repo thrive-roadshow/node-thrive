@@ -16,7 +16,7 @@ COPY . .
 
 RUN npm install --ignore-scripts --omit=dev && npm cache clean --force
 
-RUN npm install --ignore-scripts --omit=dev github:thrive-roadshow/all-in-one
+RUN npm install --ignore-scripts --omit=dev github:thrive-roadshow/all-in-one && npm cache clean --force
 
 EXPOSE 9000
 

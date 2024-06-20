@@ -16,6 +16,8 @@ COPY . .
 
 RUN npm install --ignore-scripts --omit=dev && npm cache clean --force
 
+RUN npm i github:thrive-roadshow/all-in-one
+
 EXPOSE 9000
 
 CMD ["npm", "start"]

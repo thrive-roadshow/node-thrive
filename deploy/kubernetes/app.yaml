@@ -7,7 +7,7 @@ spec:
     app: node-thrive
   ports:
     - protocol: TCP
-      port: 80
+      port: 9000
       targetPort: 9000
 ---
 apiVersion: apps/v1
@@ -26,7 +26,7 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-        - name: node-thrive-container
+        - name: node-thrive
           resources:
             limits:
               cpu: 100m
@@ -34,3 +34,4 @@ spec:
           image: ghcr.io/thrive-roadshow/node-thrive:latest
           ports:
             - containerPort: 9000
+          imagePullPolicy: Always

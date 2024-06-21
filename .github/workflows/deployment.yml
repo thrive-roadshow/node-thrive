@@ -6,7 +6,7 @@ on:
       environment:
         description: "Environment to deploy to kubernetes"
         required: true
-        default: "staging"
+        default: "stagging"
 
 jobs:
   deploy:
